@@ -25,6 +25,8 @@ import com.gun0912.tedpermission.TedPermission;
 import com.project.pill_so_good.R;
 import com.project.pill_so_good.camera.ImageInfo;
 import com.project.pill_so_good.camera.Photo;
+import com.project.pill_so_good.camera.analyze.PillAnalyzeUtil;
+import com.project.pill_so_good.dialog.LoadingDialog;
 import com.project.pill_so_good.member.autoLogin.AutoLoginService;
 import com.project.pill_so_good.member.logout.LogoutService;
 import com.project.pill_so_good.member.memberInfo.UserInfoService;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageInfo imageInfo;
     private ActivityResultLauncher<Intent> cameraResultLauncher;
     private ActivityResultLauncher<Intent> galleryResultLauncher;
+    private PillAnalyzeUtil pillAnalyzeUtil;
 
 
     @Override
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         userInfoService = new UserInfoService();
         photo = new Photo();
         imageInfo = ImageInfo.getInstance();
+        pillAnalyzeUtil = new PillAnalyzeUtil();
 
 
         setLogoutButton();
@@ -108,7 +112,11 @@ public class MainActivity extends AppCompatActivity {
         analyzeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 분석 시작 코드
+                if (imageInfo.getBitmap().isPresent()) {
+                    pillAnalyzeUtil.pillImageAnalyze(MainActivity.this, imageInfo.convertBitmapToFile(getApplicationContext()));
+                } else {
+                    showToastMessage("사진을 찍어야 분석이 가능합니다.");
+                }
             }
         });
     }
