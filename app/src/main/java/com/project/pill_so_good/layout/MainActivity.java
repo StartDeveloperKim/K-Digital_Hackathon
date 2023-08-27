@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private Photo photo;
     private ImageInfo imageInfo;
     private ActivityResultLauncher<Intent> cameraResultLauncher;
+    private ActivityResultLauncher<Intent> galleryResultLauncher;
 
 
     @Override
@@ -61,6 +62,30 @@ public class MainActivity extends AppCompatActivity {
         setAnalyzeBtn();
 
         setCameraResultLauncher();
+        setGalleryResultLauncher();
+    }
+
+    private void setGalleryResultLauncher() {
+        galleryResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if(result.getResultCode() == RESULT_OK) {
+                            Intent intent = result.getData();
+                            Uri uri = intent.getData();
+
+                            try {
+                                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                                imageInfo.setBitmap(bitmap);
+                                setImageView(bitmap);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+        );
     }
 
     private void setCameraResultLauncher() {
@@ -94,6 +119,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // 갤러리 이동 코드
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                intent.setAction(Intent.ACTION_PICK);
+                galleryResultLauncher.launch(intent);
             }
         });
     }
