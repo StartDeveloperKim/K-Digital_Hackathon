@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,7 +58,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = etEmail.getText().toString();
                 String password = etPassword.getText().toString();
-                loginService.login(email, password, LoginActivity.this, autoLoginCheck.isChecked());
+                if (email.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "이메일과 비밀번호를 모두 입력해주세요", Toast.LENGTH_SHORT).show();
+                } else {
+                    loginService.login(email, password, LoginActivity.this, autoLoginCheck.isChecked());
+                }
             }
         });
     }

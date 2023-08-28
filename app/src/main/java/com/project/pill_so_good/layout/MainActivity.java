@@ -37,10 +37,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LogoutService logoutService;
     private UserInfoService userInfoService;
 
-    private Button logoutBtn, cameraBtn, galleryBtn, analyzeBtn;
+    private Button cameraBtn, galleryBtn, analyzeBtn, profileBtn;
 
     private Photo photo;
     private ImageInfo imageInfo;
@@ -53,17 +52,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        logoutService = new LogoutService();
         userInfoService = new UserInfoService();
         photo = new Photo();
         imageInfo = ImageInfo.getInstance();
         pillAnalyzeUtil = new PillAnalyzeUtil();
 
-
-        setLogoutButton();
         setCameraBtn();
         setGalleryBtn();
         setAnalyzeBtn();
+        setProfileBtn();
 
         setCameraResultLauncher();
         setGalleryResultLauncher();
@@ -160,16 +157,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void setLogoutButton() {
-        logoutBtn = findViewById(R.id.logout_btn);
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
+    private void setProfileBtn() {
+        profileBtn = findViewById(R.id.profile_btn);
+        profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logoutService.logout();
-                AutoLoginService.removeLoginInfo(MainActivity.this);
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
     }

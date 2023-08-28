@@ -41,6 +41,7 @@
         <activity android:name=".layout.SignUpActivity" android:exported="false"/>
         <activity android:name=".layout.LoginActivity" android:exported="false"/>
         <activity android:name=".layout.ResultActivity" android:exported="false"/>
+        <activity android:name=".layout.ProfileActivity" android:exported="false" />
         <provider
             android:authorities="com.project.pill_so_good"
             android:name="androidx.core.content.FileProvider"

@@ -47,7 +47,7 @@ public class LoginService {
                     activity.startActivity(intent);
                     activity.finish();
                 } else {
-                    Toast.makeText(activity, "로그인 실패", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "이메일 또는 비밀번호가 틀렸습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
