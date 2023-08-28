@@ -11,7 +11,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="30dp"
+            android:layout_width="155dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text=""
@@ -27,16 +27,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/psg_name" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="151dp"
-            android:layout_height="150dp"
-            android:fontFamily="@font/nanumsquareeb"
-            android:gravity="center"
-            android:text="회원가입"
-            android:textColor="#1F51B7"
-            android:textSize="24sp" />
 
     </LinearLayout>
 

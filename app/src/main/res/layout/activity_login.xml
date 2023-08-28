@@ -11,7 +11,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="30dp"
+            android:layout_width="155dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text=""
@@ -27,16 +27,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/psg_name" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="151dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="로그인"
-            android:fontFamily="@font/nanumsquareeb"
-            android:textColor="#1F51B7"
-            android:textSize="24sp" />
 
     </LinearLayout>
 
@@ -54,7 +44,8 @@
             android:padding="10dp"
             android:gravity="left"
             android:textSize="15dp"
-            android:hint="이메일"/>
+            android:hint="이메일"
+            android:fontFamily="@font/nanumsquare_acr"/>
 
         <EditText
             android:id="@+id/login_password"
@@ -64,7 +55,8 @@
             android:padding="10dp"
             android:gravity="left"
             android:textSize="15dp"
-            android:hint="비밀번호"/>
+            android:hint="비밀번호"
+            android:fontFamily="@font/nanumsquare_acr"/>
 
         <CheckBox
             android:id="@+id/auto_login_checkbox"
@@ -86,6 +78,7 @@
                 android:layout_weight="1"
                 android:layout_margin="10dp"
                 android:text="로그인"
+                android:textColor="@color/white"
                 android:background="#4999dd"
                 android:fontFamily="@font/nanumsquare_acr"/>
 
