@@ -1,17 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:gravity="center"
-        android:textColor="#1F51B7"
-        android:textSize="24sp"
-        android:text="회원가입" />
+        android:layout_height="170dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text=""
+            android:textColor="#1F51B7"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/psg_name" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="151dp"
+            android:layout_height="150dp"
+            android:fontFamily="@font/nanumsquareeb"
+            android:gravity="center"
+            android:text="회원가입"
+            android:textColor="#1F51B7"
+            android:textSize="24sp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +53,8 @@
             android:padding="10dp"
             android:gravity="left"
             android:textSize="15dp"
-            android:hint="이름" />
+            android:hint="이름"
+            android:fontFamily="@font/nanumsquare_acr"/>
 
 
         <EditText
@@ -37,7 +65,8 @@
             android:padding="10dp"
             android:gravity="left"
             android:textSize="15dp"
-            android:hint="이메일" />
+            android:hint="이메일"
+            android:fontFamily="@font/nanumsquare_acr"/>
 
         <EditText
             android:id="@+id/password"
@@ -47,7 +76,8 @@
             android:padding="10dp"
             android:gravity="left"
             android:textSize="15dp"
-            android:hint="비밀번호 입력" />
+            android:hint="비밀번호 입력"
+            android:fontFamily="@font/nanumsquare_acr"/>
 
         <EditText
             android:id="@+id/password_check"
@@ -57,7 +87,8 @@
             android:padding="10dp"
             android:gravity="left"
             android:textSize="15dp"
-            android:hint="비밀번호 확인" />
+            android:hint="비밀번호 확인"
+            android:fontFamily="@font/nanumsquare_acr"/>
 
         <EditText
             android:id="@+id/age"
@@ -68,7 +99,8 @@
             android:gravity="left"
             android:inputType="number"
             android:clickable="true"
-            android:hint="나이"/>
+            android:hint="나이"
+            android:fontFamily="@font/nanumsquare_acr"/>
 
 
         <RadioGroup
@@ -81,13 +113,15 @@
                 android:id="@+id/rb_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="남자" />
+                android:text="남자"
+                android:fontFamily="@font/nanumsquare_acr"/>
 
             <RadioButton
                 android:id="@+id/rb_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="여자" />
+                android:text="여자"
+                android:fontFamily="@font/nanumsquare_acr"/>
 
         </RadioGroup>
 
@@ -101,25 +135,29 @@
                 android:id="@+id/rb_adult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="어른" />
+                android:text="어른"
+                android:fontFamily="@font/nanumsquare_acr"/>
 
             <RadioButton
                 android:id="@+id/rb_child"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="어린이" />
+                android:text="어린이"
+                android:fontFamily="@font/nanumsquare_acr"/>
 
             <RadioButton
                 android:id="@+id/rb_elderly"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="어르신" />
+                android:text="어르신"
+                android:fontFamily="@font/nanumsquare_acr"/>
 
             <RadioButton
                 android:id="@+id/rb_pregnant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="임산부" />
+                android:text="임산부"
+                android:fontFamily="@font/nanumsquare_acr"/>
 
         </RadioGroup>
 
@@ -128,6 +166,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="회원가입" />
+            android:text="회원가입"
+            android:fontFamily="@font/nanumsquareeb"/>
     </LinearLayout>
 </LinearLayout>
