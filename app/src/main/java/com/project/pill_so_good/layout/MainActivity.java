@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setImageView(Bitmap bitmap) {
-        ImageView imageView = findViewById(R.id.result);
+        ImageView imageView = findViewById(R.id.camera_btn);
         imageView.setImageBitmap(bitmap);
     }
 
