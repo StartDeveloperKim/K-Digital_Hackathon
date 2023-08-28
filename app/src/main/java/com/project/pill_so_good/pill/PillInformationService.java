@@ -1,6 +1,7 @@
 package com.project.pill_so_good.pill;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.project.pill_so_good.pill.dto.AnalyzeResultDto;
 import com.project.pill_so_good.pill.policy.PillPolicy;
 
 public class PillInformationService {
@@ -14,12 +15,15 @@ public class PillInformationService {
         this.listener = getPillInfoSuccessListener;
     }
 
-    public void getPillInfo(String code, String collectionName, int age, PillPolicy pillPolicy) {
-        db.collection(collectionName)
-                .document(code).get()
+    public void getPillInfo(AnalyzeResultDto analyzeResultDto, PillPolicy pillPolicy) {
+        db.collection(analyzeResultDto.getDbKey())
+                .document(analyzeResultDto.getPillCode()).get()
                 .addOnSuccessListener(result -> {
-                    PillInfo pillInfo = pillPolicy.getPillInfo(result, age, code);
+                    PillInfo pillInfo = pillPolicy.getPillInfo(result, analyzeResultDto.getAge(), analyzeResultDto.getPillCode());
                     listener.onFirebaseDataParsed(pillInfo);
+                })
+                .addOnFailureListener(runnable -> {
+                    System.out.println(runnable.getMessage());
                 });
     }
 }
