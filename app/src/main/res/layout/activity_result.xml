@@ -6,16 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="100dp"
-        android:layout_height="42dp"
-        android:text="결과 페이지"
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="108dp"
+        android:layout_height="55dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.08"
+        app:srcCompat="@drawable/psg_name" />
 
     <ImageView
         android:id="@+id/result_image"
@@ -24,81 +25,260 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.045" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.259" />
 
-    <TextView
-        android:id="@+id/pill_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="알약이름 TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="300dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result_image"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintTop_toBottomOf="@+id/result_image">
 
-    <TextView
-        android:id="@+id/company"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="알약제조회사 TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pill_name" />
+        <View
+            android:background="#dcdcdc"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            />
 
-    <TextView
-        android:id="@+id/code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="알약코드 TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/company" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/pill_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="알약정보 TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/code" />
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:background="#dcdcdc"
+                android:gravity="center"
+                android:text="알약 이름"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanumsquareeb"/>
 
-    <TextView
-        android:id="@+id/tag1"
-        android:layout_width="114dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="8dp"
-        android:gravity="bottom"
-        android:text="[복용 시 주의사항]"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pill_info" />
+            <TextView
+                android:id="@+id/pill_name"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="TextView"
+                android:textSize="10dp"
+                android:fontFamily="@font/nanumsquare_acr"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.495"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/result_image"
+                app:layout_constraintVertical_bias="0.05" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/danger_info"
-        android:layout_width="156dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="32dp"
-        android:text="금기정보 TextView"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.576"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tag1" />
+        <View
+            android:background="#dcdcdc"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:background="#dcdcdc"
+                android:gravity="center"
+                android:text="알약 제조회사"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanumsquareeb"/>
+
+            <TextView
+                android:id="@+id/company"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="TextView"
+                android:textSize="10dp"
+                android:fontFamily="@font/nanumsquare_acr"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pill_name" />
+        </LinearLayout>
+
+        <View
+            android:background="#dcdcdc"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:background="#dcdcdc"
+                android:gravity="center"
+                android:text="알약 코드"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanumsquareeb"/>
+
+            <TextView
+                android:id="@+id/code"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="TextView"
+                android:textSize="10dp"
+                android:fontFamily="@font/nanumsquare_acr"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/company" />
+
+        </LinearLayout>
+
+        <View
+            android:background="#dcdcdc"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:background="#dcdcdc"
+                android:gravity="center"
+                android:text="알약 정보"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanumsquareeb"/>
+
+            <TextView
+                android:id="@+id/pill_info"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="TextView"
+                android:textSize="10dp"
+                android:fontFamily="@font/nanumsquare_acr"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/code" />
+
+        </LinearLayout>
+
+        <View
+            android:background="#dcdcdc"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:background="#dcdcdc"
+                android:gravity="center"
+                android:text="복용 시 주의사항"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanumsquareeb"/>
+
+            <TextView
+                android:id="@+id/tag1"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="TextView"
+                android:textSize="10dp"
+                android:fontFamily="@font/nanumsquare_acr"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pill_info" />
+
+        </LinearLayout>
+
+        <View
+            android:background="#dcdcdc"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:background="#dcdcdc"
+                android:gravity="center"
+                android:text="금기 정보"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanumsquareeb"/>
+
+            <TextView
+                android:id="@+id/danger_info"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="TextView"
+                android:textSize="10dp"
+                android:fontFamily="@font/nanumsquare_acr"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.576"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tag1" />
+
+        </LinearLayout>
+
+        <View
+            android:background="#dcdcdc"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/addData_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="데이터추가 버튼"
+        android:layout_marginTop="12dp"
+        android:text="확인"
+        android:textColor="#FFFFFF"
+        android:background="#4999dd"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/danger_info" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        android:fontFamily="@font/nanumsquareeb"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
