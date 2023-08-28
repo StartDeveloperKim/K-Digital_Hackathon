@@ -1,6 +1,5 @@
 package com.project.pill_so_good.layout;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,19 +11,17 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.project.pill_so_good.R;
+import com.project.pill_so_good.pill.GetPillInfoSuccessListener;
+import com.project.pill_so_good.pill.PillInfo;
 import com.project.pill_so_good.s3.S3ImageController;
 import com.project.pill_so_good.s3.S3ImageDownloader;
 
-import java.io.IOException;
-
-import okhttp3.Request;
 import okhttp3.ResponseBody;
-import okio.Timeout;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ResultActivity extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity implements GetPillInfoSuccessListener {
 
     private ImageView resultImageView;
     private S3ImageController s3ImageController;
@@ -71,5 +68,10 @@ public class ResultActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "이미지 다운로드에 실패했습니다.", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onFirebaseDataParsed(PillInfo pillinfo) {
+
     }
 }
