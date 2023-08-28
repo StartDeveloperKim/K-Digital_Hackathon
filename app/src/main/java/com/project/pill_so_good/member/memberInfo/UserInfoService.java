@@ -8,6 +8,8 @@ import com.project.pill_so_good.member.dto.UserInfo;
 
 public class UserInfoService {
 
+    private static final String USER_ID = "user_id";
+
     private static final String USER_INFO = "user_info";
     private static final String NAME = "name";
     private static final String AGE = "age";
@@ -15,10 +17,11 @@ public class UserInfoService {
     private static final String DIVISION = "division";
 
 
-    public void setUserInfo(Context context, String name, int age, String gender, String division) {
+    public void setUserInfo(Context context, String userId, String name, int age, String gender, String division) {
         SharedPreferences preferences = getPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
 
+        editor.putString(USER_ID, userId);
         editor.putString(NAME, name);
         editor.putInt(AGE, age);
         editor.putString(GENDER, gender);
@@ -29,7 +32,7 @@ public class UserInfoService {
 
     public UserInfo getUserInfo(Context context) {
         SharedPreferences preferences = getPreferences(context);
-        return new UserInfo(preferences.getString(NAME, ""), preferences.getInt(AGE, 0),
+        return new UserInfo(preferences.getString(USER_ID, ""), preferences.getString(NAME, ""), preferences.getInt(AGE, 0),
                 preferences.getString(GENDER, ""), preferences.getString(DIVISION, ""));
     }
 

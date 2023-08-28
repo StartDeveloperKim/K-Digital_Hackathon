@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.project.pill_so_good.R;
+import com.project.pill_so_good.mydata.MyDataService;
 import com.project.pill_so_good.pill.GetPillInfoSuccessListener;
 import com.project.pill_so_good.pill.PillInfo;
 import com.project.pill_so_good.pill.PillInformationService;
@@ -33,6 +34,8 @@ public class ResultActivity extends AppCompatActivity implements GetPillInfoSucc
     private Button addDataButton;
     private S3ImageController s3ImageController;
     private PillInformationService pillInformationService;
+    private MyDataService myDataService;
+    private PillInfo pillInfo;
 
     private static final String MEDICINE_CODE = "medicineCode";
     private static final String AGE = "age";
@@ -45,6 +48,7 @@ public class ResultActivity extends AppCompatActivity implements GetPillInfoSucc
         setContentView(R.layout.activity_result);
         s3ImageController = S3ImageDownloader.getApiService();
         pillInformationService = new PillInformationService(this);
+        myDataService = new MyDataService();
 
         setTextView();
         setAddButton();
@@ -64,6 +68,7 @@ public class ResultActivity extends AppCompatActivity implements GetPillInfoSucc
             @Override
             public void onClick(View view) {
                 // 파이어베이스 RealTime 데이터베이스에 사용자 UID를 기준으로 값을 CRUD 할 수 있는 코드를 작성하자.
+                myDataService.save(pillInfo, getApplicationContext());
             }
         });
     }
@@ -74,14 +79,13 @@ public class ResultActivity extends AppCompatActivity implements GetPillInfoSucc
         codeTv = findViewById(R.id.code);
         infoTv = findViewById(R.id.pill_info);
         dangerInfoTv = findViewById(R.id.danger_info);
-
-        addDataButton = findViewById(R.id.addData_btn);
     }
 
     private AnalyzeResultDto getAnalyzeResultDto(Bundle bundle) {
         return new AnalyzeResultDto(bundle.getString(MEDICINE_CODE), bundle.getInt(AGE), bundle.getString(DB_KEY), bundle.getString(DETECT_IMAGE_URL));
     }
 
+    // TODO :: 이미지 다운로드 클래스를 따로 빼자 MyData에서 써야할 것 같다.
     private void setDetectImageView(String detectImageURL) {
         resultImageView = findViewById(R.id.result_image);
 
@@ -106,12 +110,15 @@ public class ResultActivity extends AppCompatActivity implements GetPillInfoSucc
     }
 
     @Override
-    public void onFirebaseDataParsed(PillInfo pillinfo) {
+    public void onFirebaseDataParsed(PillInfo pillinfo, String detectImageUrl) {
         setTextView(nameTv, pillinfo.getName());
         setTextView(companyTv, pillinfo.getCompany());
         setTextView(companyTv, pillinfo.getCode());
         setTextView(infoTv, pillinfo.getInfo());
         setTextView(dangerInfoTv, pillinfo.getDangerInfo());
+
+        this.pillInfo = pillinfo;
+        pillInfo.setImageUrl(detectImageUrl);
     }
 
     private void setTextView(TextView view, String message) {

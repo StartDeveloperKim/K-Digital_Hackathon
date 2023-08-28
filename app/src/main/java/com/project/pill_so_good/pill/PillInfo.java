@@ -11,6 +11,8 @@ public class PillInfo {
     private String info;
     private final String dangerInfo;
 
+    private String imageUrl;
+
     private Boolean isTaken;
 
     public PillInfo(String code, String company, String name, String info, String dangerInfo) {
@@ -77,5 +79,12 @@ public class PillInfo {
 
     public String getDangerInfo() {
         return dangerInfo;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;}
+
+    public void setImageUrl(String detectImageUrl) {
+        this.imageUrl = detectImageUrl;
     }
 }

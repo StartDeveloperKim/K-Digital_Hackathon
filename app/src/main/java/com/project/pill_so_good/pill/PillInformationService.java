@@ -20,7 +20,7 @@ public class PillInformationService {
                 .document(analyzeResultDto.getPillCode()).get()
                 .addOnSuccessListener(result -> {
                     PillInfo pillInfo = pillPolicy.getPillInfo(result, analyzeResultDto.getAge(), analyzeResultDto.getPillCode());
-                    listener.onFirebaseDataParsed(pillInfo);
+                    listener.onFirebaseDataParsed(pillInfo, analyzeResultDto.getDetectImageUrl());
                 })
                 .addOnFailureListener(runnable -> {
                     System.out.println(runnable.getMessage());
