@@ -26,7 +26,7 @@
         android:layout_width="186dp"
         android:layout_height="40dp"
         android:fontFamily="@font/nanumsquareeb"
-        android:gravity="left"
+        android:gravity="left|center"
         android:text="사용자 이름"
         android:textColor="#1F51B7"
         android:textSize="24sp"
