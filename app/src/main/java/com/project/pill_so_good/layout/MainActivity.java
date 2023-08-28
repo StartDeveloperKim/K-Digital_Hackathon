@@ -1,14 +1,16 @@
 package com.project.pill_so_good.layout;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -16,30 +18,27 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
 import com.project.pill_so_good.R;
 import com.project.pill_so_good.camera.ImageInfo;
 import com.project.pill_so_good.camera.Photo;
 import com.project.pill_so_good.camera.analyze.PillAnalyzeUtil;
-import com.project.pill_so_good.dialog.LoadingDialog;
-import com.project.pill_so_good.member.autoLogin.AutoLoginService;
-import com.project.pill_so_good.member.logout.LogoutService;
 import com.project.pill_so_good.member.memberInfo.UserInfoService;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private UserInfoService userInfoService;
 
-    private Button cameraBtn, galleryBtn, analyzeBtn, profileBtn;
+    private ImageButton cameraBtn, galleryBtn, analyzeBtn, profileBtn;
 
     private Photo photo;
     private ImageInfo imageInfo;
@@ -137,20 +136,25 @@ public class MainActivity extends AppCompatActivity {
         cameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (intent.resolveActivity(getPackageManager()) != null) {
-                    File photoFile = null;
-                    try {
-                        photoFile = photo.createImageFile(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES));
-                    } catch (IOException e) {
+                int permissionCheck = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA);
+                if (permissionCheck == PackageManager.PERMISSION_DENIED) {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, 0);
+                }else {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    if (intent.resolveActivity(getPackageManager()) != null) {
+                        File photoFile = null;
+                        try {
+                            photoFile = photo.createImageFile(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES));
+                        } catch (IOException e) {
 
-                    }
+                        }
 
-                    if (photoFile != null) {
-                        Uri photoUri = FileProvider.getUriForFile(MainActivity.this, getPackageName(), photoFile);
-                        photo.setPhotoUri(photoUri);
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-                        cameraResultLauncher.launch(intent);
+                        if (photoFile != null) {
+                            Uri photoUri = FileProvider.getUriForFile(MainActivity.this, getPackageName(), photoFile);
+                            photo.setPhotoUri(photoUri);
+                            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+                            cameraResultLauncher.launch(intent);
+                        }
                     }
                 }
             }
@@ -169,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setImageView(Bitmap bitmap) {
-        ImageView imageView = findViewById(R.id.result);
+        ImageView imageView = findViewById(R.id.camera_btn);
         imageView.setImageBitmap(bitmap);
     }
 
@@ -189,7 +193,17 @@ public class MainActivity extends AppCompatActivity {
         backPressedTime = currentTime;
     }
 
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 0) {
+            if (grantResults[0] == 0) {
+                showToastMessage("카메라 권한이 승인됨");
+            } else {
+                showToastMessage("카메라 권한이 거절 되었습니다.");
+            }
+        }
+    }
 
     private void showToastMessage(String message) {
         Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();

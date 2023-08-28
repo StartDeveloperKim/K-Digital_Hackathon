@@ -61,7 +61,7 @@ public class PillAnalyzeUtil {
 
                             UserInfo userInfo = userInfoService.getUserInfo(activity);
 
-                            Log.i("MainActivity", "Name : " + userInfo.getName() + "// Age : " + userInfo.getAge());
+                            Log.i("MainActivity", "Name : " + userInfo.getName() + "// UserId : " + userInfo.getUserId());
 
                             Intent intent = new Intent(activity, ResultActivity.class);
                             intent.putExtra("medicineCode", medicineCode);

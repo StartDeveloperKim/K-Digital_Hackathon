@@ -1,33 +1,41 @@
 package com.project.pill_so_good.layout;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.project.pill_so_good.R;
+import com.project.pill_so_good.mydata.MyDataService;
+import com.project.pill_so_good.pill.GetPillInfoSuccessListener;
+import com.project.pill_so_good.pill.PillInfo;
+import com.project.pill_so_good.pill.PillInformationService;
+import com.project.pill_so_good.pill.dto.AnalyzeResultDto;
+import com.project.pill_so_good.pill.policy.PillPolicyFactory;
 import com.project.pill_so_good.s3.S3ImageController;
 import com.project.pill_so_good.s3.S3ImageDownloader;
 
-import java.io.IOException;
-
-import okhttp3.Request;
 import okhttp3.ResponseBody;
-import okio.Timeout;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ResultActivity extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity implements GetPillInfoSuccessListener {
 
     private ImageView resultImageView;
+    private TextView nameTv, companyTv, codeTv, infoTv, dangerInfoTv;
+    private Button addDataButton;
     private S3ImageController s3ImageController;
+    private PillInformationService pillInformationService;
+    private MyDataService myDataService;
+    private PillInfo pillInfo;
 
     private static final String MEDICINE_CODE = "medicineCode";
     private static final String AGE = "age";
@@ -39,17 +47,45 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         s3ImageController = S3ImageDownloader.getApiService();
+        pillInformationService = new PillInformationService(this);
+        myDataService = new MyDataService();
 
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
+        setTextView();
+        setAddButton();
 
-        setDetectImageView(extras.getString(DETECT_IMAGE_URL));
-
+        AnalyzeResultDto analyzeResultDto = getAnalyzeResultDto(getIntent().getExtras());
+        if (analyzeResultDto.isCorrectPillCode()) {
+            pillInformationService.getPillInfo(analyzeResultDto, PillPolicyFactory.getPillPolicyInstance(analyzeResultDto.getDbKey()));
+            setDetectImageView(analyzeResultDto.getDetectImageUrl());
+        }else{
+            addDataButton.setEnabled(false);
+        }
     }
 
-    // TODO :: 파이어베이스 DB 구축을 통해 금기정보를 받아와야함
-    // TODO :: 알약 API를 통해 알약 정보를 얻어올 수 있어야함.
+    private void setAddButton() {
+        addDataButton = findViewById(R.id.addData_btn);
+        addDataButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 파이어베이스 RealTime 데이터베이스에 사용자 UID를 기준으로 값을 CRUD 할 수 있는 코드를 작성하자.
+                myDataService.save(pillInfo, getApplicationContext());
+            }
+        });
+    }
 
+    private void setTextView() {
+        nameTv = findViewById(R.id.pill_name);
+        companyTv = findViewById(R.id.company);
+        codeTv = findViewById(R.id.code);
+        infoTv = findViewById(R.id.pill_info);
+        dangerInfoTv = findViewById(R.id.danger_info);
+    }
+
+    private AnalyzeResultDto getAnalyzeResultDto(Bundle bundle) {
+        return new AnalyzeResultDto(bundle.getString(MEDICINE_CODE), bundle.getInt(AGE), bundle.getString(DB_KEY), bundle.getString(DETECT_IMAGE_URL));
+    }
+
+    // TODO :: 이미지 다운로드 클래스를 따로 빼자 MyData에서 써야할 것 같다.
     private void setDetectImageView(String detectImageURL) {
         resultImageView = findViewById(R.id.result_image);
 
@@ -71,5 +107,21 @@ public class ResultActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "이미지 다운로드에 실패했습니다.", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onFirebaseDataParsed(PillInfo pillinfo, String detectImageUrl) {
+        setTextView(nameTv, pillinfo.getName());
+        setTextView(companyTv, pillinfo.getCompany());
+        setTextView(companyTv, pillinfo.getCode());
+        setTextView(infoTv, pillinfo.getInfo());
+        setTextView(dangerInfoTv, pillinfo.getDangerInfo());
+
+        this.pillInfo = pillinfo;
+        pillInfo.setImageUrl(detectImageUrl);
+    }
+
+    private void setTextView(TextView view, String message) {
+        view.setText(message);
     }
 }

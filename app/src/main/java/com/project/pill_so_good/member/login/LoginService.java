@@ -67,7 +67,7 @@ public class LoginService {
                     String gender = dataSnapshot.child("gender").getValue().toString();
                     String division = dataSnapshot.child("division").getValue().toString();
 
-                    userInfoService.setUserInfo(context, name, age, gender, division);
+                    userInfoService.setUserInfo(context, uid, name, age, gender, division);
                 }
             }
         });
