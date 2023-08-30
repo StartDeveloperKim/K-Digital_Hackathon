@@ -9,6 +9,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.project.pill_so_good.member.memberInfo.UserInfoService;
+import com.project.pill_so_good.mydata.dto.PillMyDataDto;
 import com.project.pill_so_good.pill.PillInfo;
 
 import java.util.ArrayList;
@@ -37,20 +38,22 @@ public class MyDataService {
                 });
     }
     
-    public List<PillInfo> findPillInfo(Context context) {
-        List<PillInfo> pillInfos = new ArrayList<>();
-        databaseReference.child(userInfoService.getUserInfo(context).getUserId()).get()
-                .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
-                    @Override
-                    public void onSuccess(DataSnapshot dataSnapshot) {
-                        dataSnapshot.getValue();
-                        dataSnapshot.getChildren().forEach(pill -> {
-                            pill.getChildren();
-                            Object value = pill.getValue();
-                        });
-                    }
-                });
-        return null;
+    public List<PillMyDataDto> findPillInfo(Context context) {
+        List<PillMyDataDto> result = new ArrayList<>();
+//        boolean complete = databaseReference.child(userInfoService.getUserInfo(context).getUserId()).get()
+//                .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+//                    @Override
+//                    public void onSuccess(DataSnapshot dataSnapshot) {
+//                        dataSnapshot.getChildren()
+//                                .forEach(pillInfos -> {
+//                                    PillMyDataDto pillMyDataDto = pillInfos.getValue(PillMyDataDto.class);
+//                                    result.add(pillMyDataDto);
+//                                });
+//                    }
+//                }).isComplete();
+
+
+        return result;
     }
 
     private static void showToastMessage(Context context, String text) {

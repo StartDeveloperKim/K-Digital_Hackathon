@@ -3,16 +3,12 @@ package com.project.pill_so_good.layout;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -37,8 +33,6 @@ import com.project.pill_so_good.member.memberInfo.UserInfoService;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         setMapBtn();
         setCameraResultLauncher();
         setGalleryResultLauncher();
+
     }
     private void setMapBtn()
     {
