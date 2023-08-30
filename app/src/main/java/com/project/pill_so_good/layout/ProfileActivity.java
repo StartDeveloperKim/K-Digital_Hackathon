@@ -11,19 +11,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.project.pill_so_good.R;
 import com.project.pill_so_good.member.autoLogin.AutoLoginService;
 import com.project.pill_so_good.member.logout.LogoutService;
+import com.project.pill_so_good.mydata.MyDataService;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private Button logoutBtn;
     private LogoutService logoutService;
+    private MyDataService myDataService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         logoutService = new LogoutService();
+        myDataService = new MyDataService();
 
         setLogoutButton();
+        myDataService.findPillInfo(getApplicationContext());
     }
 
     private void setLogoutButton() {

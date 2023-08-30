@@ -271,7 +271,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="확인"
+        android:text="데이터 추가"
         android:textColor="#FFFFFF"
         android:background="#4999dd"
         app:layout_constraintEnd_toEndOf="parent"

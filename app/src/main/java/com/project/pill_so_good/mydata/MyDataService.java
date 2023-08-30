@@ -5,10 +5,14 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.project.pill_so_good.member.memberInfo.UserInfoService;
 import com.project.pill_so_good.pill.PillInfo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyDataService {
 
@@ -22,7 +26,7 @@ public class MyDataService {
     }
 
     public void save(PillInfo pillInfo, Context context) {
-        databaseReference.child(userInfoService.getUserInfo(context).getUserId()).setValue(pillInfo)
+        databaseReference.child(userInfoService.getUserInfo(context).getUserId()).child(pillInfo.getCode()).setValue(pillInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
@@ -31,6 +35,22 @@ public class MyDataService {
                 }).addOnFailureListener(runnable -> {
                     showToastMessage(context, "데이터 추가에 실패했습니다.");
                 });
+    }
+    
+    public List<PillInfo> findPillInfo(Context context) {
+        List<PillInfo> pillInfos = new ArrayList<>();
+        databaseReference.child(userInfoService.getUserInfo(context).getUserId()).get()
+                .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                    @Override
+                    public void onSuccess(DataSnapshot dataSnapshot) {
+                        dataSnapshot.getValue();
+                        dataSnapshot.getChildren().forEach(pill -> {
+                            pill.getChildren();
+                            Object value = pill.getValue();
+                        });
+                    }
+                });
+        return null;
     }
 
     private static void showToastMessage(Context context, String text) {
