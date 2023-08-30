@@ -16,6 +16,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -42,6 +44,8 @@
         <activity android:name=".layout.LoginActivity" android:exported="false"/>
         <activity android:name=".layout.ResultActivity" android:exported="false"/>
         <activity android:name=".layout.ProfileActivity" android:exported="false" />
+        <activity android:name=".layout.MapActivity" android:exported="false"/>
+
         <provider
             android:authorities="com.project.pill_so_good"
             android:name="androidx.core.content.FileProvider"
@@ -53,6 +57,7 @@
                 android:resource="@xml/file_paths" />
 
         </provider>
+        <meta-data android:name="com.kakao.sdk.AppKey" android:value="6f5365094fe06779b97f64b97225648d" />
     </application>
 
 </manifest>

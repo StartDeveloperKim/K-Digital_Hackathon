@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     private UserInfoService userInfoService;
 
-    private ImageButton cameraBtn, galleryBtn, analyzeBtn, profileBtn;
+    private ImageButton cameraBtn, galleryBtn, analyzeBtn, profileBtn, map;
 
     private Photo photo;
     private ImageInfo imageInfo;
@@ -60,11 +60,22 @@ public class MainActivity extends AppCompatActivity {
         setGalleryBtn();
         setAnalyzeBtn();
         setProfileBtn();
-
+        setMapBtn();
         setCameraResultLauncher();
         setGalleryResultLauncher();
     }
-
+    private void setMapBtn()
+    {
+        map = findViewById(R.id.map);
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Intent를 사용하여 MapActivity를 시작
+                Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
     private void setGalleryResultLauncher() {
         galleryResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
