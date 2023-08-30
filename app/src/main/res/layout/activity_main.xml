@@ -78,13 +78,22 @@
         app:layout_constraintVertical_bias="0.2"
         app:srcCompat="@drawable/magnifying_glass" />
 
+    <View
+        android:layout_width="800px"
+        android:layout_height="5px"
+        android:layout_marginTop="40dp"
+        android:background="#D5D5D5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/camera_btn" />
+
     <ImageButton
         android:id="@+id/profile_btn"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_gravity="center"
         android:background="@android:color/transparent"
-        android:src="@drawable/profile_icon3"
+        android:src="@drawable/person_icon2"
         android:text="프로필 페이지"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
