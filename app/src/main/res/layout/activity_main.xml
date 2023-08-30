@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="made by Go Moon Han Kim"
+        android:text="made by Ko Moon Han Kim"
         android:fontFamily="@font/nanumsquare_acr"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,35 +47,35 @@
         app:layout_constraintVertical_bias="0.357"
         app:srcCompat="@drawable/camera_icon" />
 
+
     <ImageButton
         android:id="@+id/gallery_btn"
-        android:layout_width="106dp"
-        android:layout_height="101dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintHorizontal_bias="0.17"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/camera_btn"
-        app:layout_constraintVertical_bias="0.204"
+        app:layout_constraintVertical_bias="0.349"
         app:srcCompat="@drawable/gallery_icon" />
-
 
     <ImageButton
         android:id="@+id/analyze_btn"
-        android:layout_width="100dp"
-        android:layout_height="96dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.81"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/camera_btn"
-        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintVertical_bias="0.354"
         app:srcCompat="@drawable/magnifying_glass" />
 
     <View
@@ -114,13 +114,16 @@
 
     <ImageButton
         android:id="@+id/map"
-        android:layout_width="97dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="164dp"
-        android:layout_marginBottom="60dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="292dp"
+        android:layout_marginBottom="132dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
         android:text="지도"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/map_icon" />
 
     <TextView
         android:id="@+id/textView5"
@@ -131,6 +134,16 @@
         app:layout_constraintEnd_toEndOf="@+id/analyze_btn"
         app:layout_constraintStart_toStartOf="@+id/analyze_btn"
         app:layout_constraintTop_toBottomOf="@+id/analyze_btn" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="의약품 폐기"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/map"
+        app:layout_constraintStart_toStartOf="@+id/map"
+        app:layout_constraintTop_toBottomOf="@+id/map" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
