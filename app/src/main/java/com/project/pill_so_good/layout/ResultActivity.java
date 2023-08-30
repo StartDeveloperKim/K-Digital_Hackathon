@@ -113,7 +113,7 @@ public class ResultActivity extends AppCompatActivity implements GetPillInfoSucc
     public void onFirebaseDataParsed(PillInfo pillinfo, String detectImageUrl) {
         setTextView(nameTv, pillinfo.getName());
         setTextView(companyTv, pillinfo.getCompany());
-        setTextView(companyTv, pillinfo.getCode());
+        setTextView(codeTv, pillinfo.getCode());
         setTextView(infoTv, pillinfo.getInfo());
         setTextView(dangerInfoTv, pillinfo.getDangerInfo());
 

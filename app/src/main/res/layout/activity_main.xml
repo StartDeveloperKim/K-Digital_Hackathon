@@ -27,56 +27,56 @@
         android:layout_height="55dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.108"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08"
+        app:layout_constraintVertical_bias="0.044"
         app:srcCompat="@drawable/psg_name" />
 
     <ImageButton
         android:id="@+id/camera_btn"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="292dp"
+        android:layout_height="268dp"
         android:background="@android:color/transparent"
         android:scaleType="fitXY"
         android:text="카메라"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.357"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.357"
         app:srcCompat="@drawable/camera_icon" />
 
     <ImageButton
         android:id="@+id/gallery_btn"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="106dp"
+        android:layout_height="101dp"
         android:layout_marginTop="32dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.231"
-        app:layout_constraintVertical_bias="0.473"
+        app:layout_constraintHorizontal_bias="0.181"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/camera_btn"
+        app:layout_constraintVertical_bias="0.204"
         app:srcCompat="@drawable/gallery_icon" />
+
 
     <ImageButton
         android:id="@+id/analyze_btn"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="100dp"
+        android:layout_height="96dp"
         android:layout_marginTop="32dp"
-        android:scaleType="fitCenter"
         android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.81"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/camera_btn"
-        app:layout_constraintHorizontal_bias="0.778"
-        app:layout_constraintVertical_bias="0.473"
-        app:srcCompat="@drawable/magnifying_glass"/>
-
+        app:layout_constraintVertical_bias="0.2"
+        app:srcCompat="@drawable/magnifying_glass" />
 
     <ImageButton
         android:id="@+id/profile_btn"
@@ -88,10 +88,30 @@
         android:text="프로필 페이지"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintHorizontal_bias="0.894"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08" />
+        app:layout_constraintVertical_bias="0.051" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="갤러리"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/gallery_btn"
+        app:layout_constraintStart_toStartOf="@+id/gallery_btn"
+        app:layout_constraintTop_toBottomOf="@+id/gallery_btn" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="알약분석"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/analyze_btn"
+        app:layout_constraintStart_toStartOf="@+id/analyze_btn"
+        app:layout_constraintTop_toBottomOf="@+id/analyze_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
